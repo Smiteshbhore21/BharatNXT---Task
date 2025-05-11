@@ -44,72 +44,77 @@ class _HomeScreenState extends State<HomeScreen> {
             topRight: Radius.circular(24),
           ),
         ),
-        child: Provider.of<Alldata>(context).alldata.isEmpty
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView.builder(
-                itemCount: Provider.of<Alldata>(context).alldata.length,
-                padding: const EdgeInsets.only(
-                  top: 20,
-                  bottom: 5,
-                  left: 10,
-                  right: 10,
-                ),
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => DetailScreen(
-                                indx: index,
-                              ),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height:
-                              MediaQuery.of(context).size.width * 0.133928571,
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 5,
-                            horizontal: 5,
-                          ),
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              const Icon(
-                                Icons.article_rounded,
-                                color: Color.fromRGBO(16, 96, 72, 1),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: Text(
-                                  Provider.of<Alldata>(context)
-                                      .alldata[index]
-                                      .title,
-                                  style: GoogleFonts.poppins(),
+        child: RefreshIndicator(
+          color: const Color.fromRGBO(16, 96, 72, 1),
+          backgroundColor: Colors.white,
+          onRefresh: Provider.of<Alldata>(context, listen: false).fetchArticles,
+          child: Provider.of<Alldata>(context).alldata.isEmpty
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : ListView.builder(
+                  itemCount: Provider.of<Alldata>(context).alldata.length,
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                    bottom: 5,
+                    left: 10,
+                    right: 10,
+                  ),
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => DetailScreen(
+                                  indx: index,
                                 ),
                               ),
-                            ],
+                            );
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height:
+                                MediaQuery.of(context).size.width * 0.133928571,
+                            margin: const EdgeInsets.symmetric(
+                              vertical: 5,
+                              horizontal: 5,
+                            ),
+                            child: Row(
+                              children: [
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                const Icon(
+                                  Icons.article_rounded,
+                                  color: Color.fromRGBO(16, 96, 72, 1),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    Provider.of<Alldata>(context)
+                                        .alldata[index]
+                                        .title,
+                                    style: GoogleFonts.poppins(),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 1,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  );
-                },
-              ),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 1,
+                          color: Colors.grey,
+                        ),
+                      ],
+                    );
+                  },
+                ),
+        ),
       ),
     );
   }

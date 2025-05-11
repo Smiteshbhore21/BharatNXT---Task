@@ -8,7 +8,7 @@ class Alldata extends ChangeNotifier {
 
   Alldata();
 
-  void fetchArticles() async {
+  Future<void> fetchArticles() async {
     alldata.clear();
     Uri url = Uri.parse("https://jsonplaceholder.typicode.com/posts");
     http.Response response = await http.get(url);
@@ -24,5 +24,9 @@ class Alldata extends ChangeNotifier {
       );
     }
     notifyListeners();
+  }
+
+  Future<void> refresh() async {
+    await fetchArticles();
   }
 }
