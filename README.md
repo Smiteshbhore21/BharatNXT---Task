@@ -12,12 +12,12 @@
  
 ## Setup Instructions
   1. Clone the repo:
-      **git clone https://github.com/Smiteshbhore21/BharatNXT---Task.git**
-      **cd article
+      - git clone https://github.com/Smiteshbhore21/BharatNXT---Task.git
+      - cd article
   2. Install dependencies:
-      **flutter pub get**
+      - flutter pub get
   4. Run the app:
-      **flutter run**
+      - flutter run
 
 ## Tech Stack
 - Flutter SDK: 3.24.4
