@@ -13,7 +13,7 @@
 ## Setup Instructions
   1. Clone the repo:
       - git clone https://github.com/Smiteshbhore21/BharatNXT---Task.git
-      - cd article
+      - cd articles
   2. Install dependencies:
       - flutter pub get
   4. Run the app:
